@@ -305,6 +305,24 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+    <None Include="XrmContext\Run.fsx" />
+    <None Include="XrmContext\Run.ps1" />
+    <None Include="XrmContext\XrmContext.exe.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="XrmContext\FSharp.Core.dll" />
+    <Content Include="XrmContext\Microsoft.Crm.Sdk.Proxy.dll" />
+    <Content Include="XrmContext\Microsoft.IdentityModel.Clients.ActiveDirectory.dll" />
+    <Content Include="XrmContext\Microsoft.IdentityModel.Clients.ActiveDirectory.Platform.dll" />
+    <Content Include="XrmContext\Microsoft.Rest.ClientRuntime.dll" />
+    <Content Include="XrmContext\Microsoft.Xrm.Sdk.Deployment.dll" />
+    <Content Include="XrmContext\Microsoft.Xrm.Sdk.dll" />
+    <Content Include="XrmContext\Microsoft.Xrm.Sdk.Workflow.dll" />
+    <Content Include="XrmContext\Microsoft.Xrm.Tooling.Connector.dll" />
+    <Content Include="XrmContext\Newtonsoft.Json.dll" />
+    <Content Include="XrmContext\System.ValueTuple.dll" />
+    <Content Include="XrmContext\XrmContext.exe" />
+    <Content Include="XrmContext\XrmContext.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" />

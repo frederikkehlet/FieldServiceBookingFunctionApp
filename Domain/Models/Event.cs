@@ -16,9 +16,11 @@ namespace Domain.Models
         [JsonPropertyName("end")]
         public Time End { get; set; }
 
-
         [JsonPropertyName("location")]
         public Location Location { get; set; }
+
+        [JsonPropertyName("showAs")]
+        public string ShowAs { get; set; }
     }
 
     public class Time

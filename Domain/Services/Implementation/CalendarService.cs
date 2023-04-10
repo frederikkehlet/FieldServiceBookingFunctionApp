@@ -1,4 +1,4 @@
-﻿using Domain.Clients.Implementation;
+﻿using Domain.Clients;
 using Domain.Models;
 using Microsoft.Extensions.Logging;
 using System;
@@ -9,10 +9,10 @@ namespace Domain.Services.Implementation
 {
     public class CalendarService : ICalendarService
     {
-        private readonly GraphClient _graphClient;
+        private readonly IGraphClient _graphClient;
         private readonly ILogger<ICalendarService> _logger;
 
-        public CalendarService(GraphClient graphClient, ILogger<ICalendarService> logger)
+        public CalendarService(IGraphClient graphClient, ILogger<ICalendarService> logger)
         {
             _graphClient = graphClient;
             _logger = logger;

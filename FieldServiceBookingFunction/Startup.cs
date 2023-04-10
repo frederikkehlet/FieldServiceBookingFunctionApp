@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.PowerPlatform.Dataverse.Client;
 using System;
 using Domain.Clients.Implementation;
+using Domain.Clients;
 
 [assembly: FunctionsStartup(typeof(FieldServiceBookingFunction.Startup))]
 
@@ -27,7 +28,7 @@ namespace FieldServiceBookingFunction
                 return new ServiceClient(connectionString);
             });
 
-            builder.Services.AddScoped(provider => 
+            builder.Services.AddScoped<IGraphClient>(provider => 
             {
                 string scope = "https://graph.microsoft.com/.default";
                 string tenantId = Environment.GetEnvironmentVariable("TenantId");

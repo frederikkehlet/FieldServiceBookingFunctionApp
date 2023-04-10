@@ -2079,6 +2079,17 @@ namespace Domain {
             }
         }
         
+        [AttributeLogicalName("bookingstatus")]
+        [RelationshipSchemaName("bookingstatus_bookableresourcebooking_BookingStatus")]
+        public BookingStatus bookingstatus_bookableresourcebooking_BookingStatus {
+            get {
+                return GetRelatedEntity<BookingStatus>("bookingstatus_bookableresourcebooking_BookingStatus", null);
+            }
+            set {
+                SetRelatedEntity("bookingstatus_bookableresourcebooking_BookingStatus", null, value);
+            }
+        }
+        
         [AttributeLogicalName("createdby")]
         [RelationshipSchemaName("lk_bookableresourcebooking_createdby")]
         public SystemUser lk_bookableresourcebooking_createdby {
@@ -2168,6 +2179,506 @@ namespace Domain {
         }
         
         public static BookableResourceBooking Retrieve(IOrganizationService service, Guid id, params Expression<Func<BookableResourceBooking,object>>[] attrs) {
+            return service.Retrieve(id, attrs);
+        }
+    }
+    
+    /// <summary>
+    /// <para>Tillader oprettelse af flere understatusser, der er knyttet til en indstilling for reservationsstatus.</para>
+    /// <para>Display Name: Reservationsstatus</para>
+    /// </summary>
+    [EntityLogicalName("bookingstatus")]
+    [DebuggerDisplay("{DebuggerDisplay,nq}")]
+    [DataContract()]
+    public partial class BookingStatus : ExtendedEntity<BookingStatusState, BookingStatus_StatusCode> {
+        
+        public const string EntityLogicalName = "bookingstatus";
+        
+        public const int EntityTypeCode = 1152;
+        
+        public BookingStatus() : 
+                base(EntityLogicalName) {
+        }
+        
+        public BookingStatus(Guid Id) : 
+                base(EntityLogicalName, Id) {
+        }
+        
+        private string DebuggerDisplay {
+            get {
+                return GetDebuggerDisplay("name");
+            }
+        }
+        
+        [AttributeLogicalName("bookingstatusid")]
+        public override Guid Id {
+            get {
+                return base.Id;
+            }
+            set {
+                SetId("bookingstatusid", value);
+            }
+        }
+        
+        /// <summary>
+        /// <para>Entydigt id for reservationsstatus.</para>
+        /// <para>Display Name: Reservationsstatus</para>
+        /// </summary>
+        [AttributeLogicalName("bookingstatusid")]
+        [DisplayName("Reservationsstatus")]
+        public Guid? BookingStatusId {
+            get {
+                return GetAttributeValue<Guid?>("bookingstatusid");
+            }
+            set {
+                SetId("bookingstatusid", value);
+            }
+        }
+        
+        /// <summary>
+        /// <para>Unique identifier of the user who created the record.</para>
+        /// <para>Display Name: Created By</para>
+        /// </summary>
+        [AttributeLogicalName("createdby")]
+        [DisplayName("Created By")]
+        public EntityReference CreatedBy {
+            get {
+                return GetAttributeValue<EntityReference>("createdby");
+            }
+        }
+        
+        /// <summary>
+        /// <para>Date and time when the record was created.</para>
+        /// <para>Display Name: Created On</para>
+        /// </summary>
+        [AttributeLogicalName("createdon")]
+        [DisplayName("Created On")]
+        public DateTime? CreatedOn {
+            get {
+                return GetAttributeValue<DateTime?>("createdon");
+            }
+        }
+        
+        /// <summary>
+        /// <para>Unique identifier of the delegate user who created the record.</para>
+        /// <para>Display Name: Created By (Delegate)</para>
+        /// </summary>
+        [AttributeLogicalName("createdonbehalfby")]
+        [DisplayName("Created By (Delegate)")]
+        public EntityReference CreatedOnBehalfBy {
+            get {
+                return GetAttributeValue<EntityReference>("createdonbehalfby");
+            }
+        }
+        
+        /// <summary>
+        /// <para>Skriv en detaljeret beskrivelse til reservationsstatussen.</para>
+        /// <para>Display Name: Beskrivelse</para>
+        /// </summary>
+        [AttributeLogicalName("description")]
+        [DisplayName("Beskrivelse")]
+        [MaxLength(100)]
+        public string Description {
+            get {
+                return GetAttributeValue<string>("description");
+            }
+            set {
+                SetAttributeValue("description", value);
+            }
+        }
+        
+        /// <summary>
+        /// <para>Valutakurs for den valuta, der er tilknyttet reservationsstatussen, i forhold til grundvalutaen.</para>
+        /// <para>Display Name: ExchangeRate</para>
+        /// </summary>
+        [AttributeLogicalName("exchangerate")]
+        [DisplayName("ExchangeRate")]
+        public decimal? ExchangeRate {
+            get {
+                return GetAttributeValue<decimal?>("exchangerate");
+            }
+        }
+        
+        /// <summary>
+        /// <para>Sequence number of the import that created this record.</para>
+        /// <para>Display Name: Import Sequence Number</para>
+        /// </summary>
+        [AttributeLogicalName("importsequencenumber")]
+        [DisplayName("Import Sequence Number")]
+        [Range(-2147483648, 2147483647)]
+        public int? ImportSequenceNumber {
+            get {
+                return GetAttributeValue<int?>("importsequencenumber");
+            }
+            set {
+                SetAttributeValue("importsequencenumber", value);
+            }
+        }
+        
+        /// <summary>
+        /// <para>Unique identifier of the user who modified the record.</para>
+        /// <para>Display Name: Modified By</para>
+        /// </summary>
+        [AttributeLogicalName("modifiedby")]
+        [DisplayName("Modified By")]
+        public EntityReference ModifiedBy {
+            get {
+                return GetAttributeValue<EntityReference>("modifiedby");
+            }
+        }
+        
+        /// <summary>
+        /// <para>Date and time when the record was modified.</para>
+        /// <para>Display Name: Modified On</para>
+        /// </summary>
+        [AttributeLogicalName("modifiedon")]
+        [DisplayName("Modified On")]
+        public DateTime? ModifiedOn {
+            get {
+                return GetAttributeValue<DateTime?>("modifiedon");
+            }
+        }
+        
+        /// <summary>
+        /// <para>Unique identifier of the delegate user who modified the record.</para>
+        /// <para>Display Name: Modified By (Delegate)</para>
+        /// </summary>
+        [AttributeLogicalName("modifiedonbehalfby")]
+        [DisplayName("Modified By (Delegate)")]
+        public EntityReference ModifiedOnBehalfBy {
+            get {
+                return GetAttributeValue<EntityReference>("modifiedonbehalfby");
+            }
+        }
+        
+        /// <summary>
+        /// <para>Skriv navnet på reservationsstatussen.</para>
+        /// <para>Display Name: Navn</para>
+        /// </summary>
+        [AttributeLogicalName("name")]
+        [DisplayName("Navn")]
+        [MaxLength(100)]
+        public string Name {
+            get {
+                return GetAttributeValue<string>("name");
+            }
+            set {
+                SetAttributeValue("name", value);
+            }
+        }
+        
+        /// <summary>
+        /// <para>Date and time that the record was migrated.</para>
+        /// <para>Display Name: Record Created On</para>
+        /// </summary>
+        [AttributeLogicalName("overriddencreatedon")]
+        [DisplayName("Record Created On")]
+        public DateTime? OverriddenCreatedOn {
+            get {
+                return GetAttributeValue<DateTime?>("overriddencreatedon");
+            }
+            set {
+                SetAttributeValue("overriddencreatedon", value);
+            }
+        }
+        
+        /// <summary>
+        /// <para>Owner Id</para>
+        /// <para>Display Name: Owner</para>
+        /// </summary>
+        [AttributeLogicalName("ownerid")]
+        [DisplayName("Owner")]
+        public EntityReference OwnerId {
+            get {
+                return GetAttributeValue<EntityReference>("ownerid");
+            }
+            set {
+                SetAttributeValue("ownerid", value);
+            }
+        }
+        
+        /// <summary>
+        /// <para>Unique identifier for the business unit that owns the record</para>
+        /// <para>Display Name: Owning Business Unit</para>
+        /// </summary>
+        [AttributeLogicalName("owningbusinessunit")]
+        [DisplayName("Owning Business Unit")]
+        public EntityReference OwningBusinessUnit {
+            get {
+                return GetAttributeValue<EntityReference>("owningbusinessunit");
+            }
+        }
+        
+        /// <summary>
+        /// <para>Unique identifier for the team that owns the record.</para>
+        /// <para>Display Name: Owning Team</para>
+        /// </summary>
+        [AttributeLogicalName("owningteam")]
+        [DisplayName("Owning Team")]
+        public EntityReference OwningTeam {
+            get {
+                return GetAttributeValue<EntityReference>("owningteam");
+            }
+        }
+        
+        /// <summary>
+        /// <para>Unique identifier for the user that owns the record.</para>
+        /// <para>Display Name: Owning User</para>
+        /// </summary>
+        [AttributeLogicalName("owninguser")]
+        [DisplayName("Owning User")]
+        public EntityReference OwningUser {
+            get {
+                return GetAttributeValue<EntityReference>("owninguser");
+            }
+        }
+        
+        /// <summary>
+        /// <para>Skriv navnet på reservationsstatussen.</para>
+        /// <para>Display Name: Navn</para>
+        /// </summary>
+        [AttributeLogicalName("name")]
+        [DisplayName("Navn")]
+        [MaxLength(100)]
+        public string PrimaryNameField {
+            get {
+                return GetAttributeValue<string>("name");
+            }
+            set {
+                SetAttributeValue("name", value);
+            }
+        }
+        
+        /// <summary>
+        /// <para>Status for reservationsstatus</para>
+        /// <para>Display Name: Status</para>
+        /// </summary>
+        [AttributeLogicalName("statecode")]
+        [DisplayName("Status")]
+        public BookingStatusState? StateCode {
+            get {
+                return GetOptionSetValue<BookingStatusState>("statecode");
+            }
+            set {
+                SetOptionSetValue("statecode", value);
+            }
+        }
+        
+        /// <summary>
+        /// <para>Vælg, om reservationsstatussen skal være foreslået, bindende eller annulleret.</para>
+        /// <para>Display Name: Status</para>
+        /// </summary>
+        [AttributeLogicalName("status")]
+        [DisplayName("Status")]
+        public BookingStatus_Status? Status {
+            get {
+                return GetOptionSetValue<BookingStatus_Status>("status");
+            }
+            set {
+                SetOptionSetValue("status", value);
+            }
+        }
+        
+        /// <summary>
+        /// <para>Årsag til status for reservationsstatus</para>
+        /// <para>Display Name: Statusårsag</para>
+        /// </summary>
+        [AttributeLogicalName("statuscode")]
+        [DisplayName("Statusårsag")]
+        public BookingStatus_StatusCode? StatusCode {
+            get {
+                return GetOptionSetValue<BookingStatus_StatusCode>("statuscode");
+            }
+            set {
+                SetOptionSetValue("statuscode", value);
+            }
+        }
+        
+        /// <summary>
+        /// <para>For internal use only.</para>
+        /// <para>Display Name: Time Zone Rule Version Number</para>
+        /// </summary>
+        [AttributeLogicalName("timezoneruleversionnumber")]
+        [DisplayName("Time Zone Rule Version Number")]
+        [Range(-1, 2147483647)]
+        public int? TimeZoneRuleVersionNumber {
+            get {
+                return GetAttributeValue<int?>("timezoneruleversionnumber");
+            }
+            set {
+                SetAttributeValue("timezoneruleversionnumber", value);
+            }
+        }
+        
+        /// <summary>
+        /// <para>Valutakurs for den valuta, der er tilknyttet BookingStatus, i forhold til grundvalutaen.</para>
+        /// <para>Display Name: Valuta</para>
+        /// </summary>
+        [AttributeLogicalName("transactioncurrencyid")]
+        [DisplayName("Valuta")]
+        public EntityReference TransactionCurrencyId {
+            get {
+                return GetAttributeValue<EntityReference>("transactioncurrencyid");
+            }
+            set {
+                SetAttributeValue("transactioncurrencyid", value);
+            }
+        }
+        
+        /// <summary>
+        /// <para>Time zone code that was in use when the record was created.</para>
+        /// <para>Display Name: UTC Conversion Time Zone Code</para>
+        /// </summary>
+        [AttributeLogicalName("utcconversiontimezonecode")]
+        [DisplayName("UTC Conversion Time Zone Code")]
+        [Range(-1, 2147483647)]
+        public int? UTCConversionTimeZoneCode {
+            get {
+                return GetAttributeValue<int?>("utcconversiontimezonecode");
+            }
+            set {
+                SetAttributeValue("utcconversiontimezonecode", value);
+            }
+        }
+        
+        /// <summary>
+        /// <para>Version Number</para>
+        /// <para>Display Name: Version Number</para>
+        /// </summary>
+        [AttributeLogicalName("versionnumber")]
+        [DisplayName("Version Number")]
+        public long? VersionNumber {
+            get {
+                return GetAttributeValue<long?>("versionnumber");
+            }
+        }
+        
+        /// <summary>
+        /// <para>Display Name: Field Service-status</para>
+        /// </summary>
+        [AttributeLogicalName("msdyn_fieldservicestatus")]
+        [DisplayName("Field Service-status")]
+        public msdyn_bookingsystemstatus? msdyn_FieldServiceStatus {
+            get {
+                return GetOptionSetValue<msdyn_bookingsystemstatus>("msdyn_fieldservicestatus");
+            }
+            set {
+                SetOptionSetValue("msdyn_fieldservicestatus", value);
+            }
+        }
+        
+        /// <summary>
+        /// <para> URL-adressen til et webressourcebillede.</para>
+        /// <para>Display Name: URL-adresse for billede</para>
+        /// </summary>
+        [AttributeLogicalName("msdyn_imageurl")]
+        [DisplayName("URL-adresse for billede")]
+        [MaxLength(200)]
+        public string msdyn_ImageUrl {
+            get {
+                return GetAttributeValue<string>("msdyn_imageurl");
+            }
+            set {
+                SetAttributeValue("msdyn_imageurl", value);
+            }
+        }
+        
+        /// <summary>
+        /// <para>Kun til intern brug.</para>
+        /// <para>Display Name: Interne flag</para>
+        /// </summary>
+        [AttributeLogicalName("msdyn_internalflags")]
+        [DisplayName("Interne flag")]
+        public string msdyn_InternalFlags {
+            get {
+                return GetAttributeValue<string>("msdyn_internalflags");
+            }
+            set {
+                SetAttributeValue("msdyn_internalflags", value);
+            }
+        }
+        
+        /// <summary>
+        /// <para>Display Name: Statusfarve</para>
+        /// </summary>
+        [AttributeLogicalName("msdyn_statuscolor")]
+        [DisplayName("Statusfarve")]
+        [MaxLength(100)]
+        public string msdyn_StatusColor {
+            get {
+                return GetAttributeValue<string>("msdyn_statuscolor");
+            }
+            set {
+                SetAttributeValue("msdyn_statuscolor", value);
+            }
+        }
+        
+        [RelationshipSchemaName("bookingstatus_bookableresourcebooking_BookingStatus")]
+        public IEnumerable<BookableResourceBooking> bookingstatus_bookableresourcebooking_BookingStatus {
+            get {
+                return GetRelatedEntities<BookableResourceBooking>("bookingstatus_bookableresourcebooking_BookingStatus", null);
+            }
+            set {
+                SetRelatedEntities("bookingstatus_bookableresourcebooking_BookingStatus", null, value);
+            }
+        }
+        
+        [AttributeLogicalName("createdby")]
+        [RelationshipSchemaName("lk_bookingstatus_createdby")]
+        public SystemUser lk_bookingstatus_createdby {
+            get {
+                return GetRelatedEntity<SystemUser>("lk_bookingstatus_createdby", null);
+            }
+            set {
+                SetRelatedEntity("lk_bookingstatus_createdby", null, value);
+            }
+        }
+        
+        [AttributeLogicalName("createdonbehalfby")]
+        [RelationshipSchemaName("lk_bookingstatus_createdonbehalfby")]
+        public SystemUser lk_bookingstatus_createdonbehalfby {
+            get {
+                return GetRelatedEntity<SystemUser>("lk_bookingstatus_createdonbehalfby", null);
+            }
+            set {
+                SetRelatedEntity("lk_bookingstatus_createdonbehalfby", null, value);
+            }
+        }
+        
+        [AttributeLogicalName("modifiedby")]
+        [RelationshipSchemaName("lk_bookingstatus_modifiedby")]
+        public SystemUser lk_bookingstatus_modifiedby {
+            get {
+                return GetRelatedEntity<SystemUser>("lk_bookingstatus_modifiedby", null);
+            }
+            set {
+                SetRelatedEntity("lk_bookingstatus_modifiedby", null, value);
+            }
+        }
+        
+        [AttributeLogicalName("modifiedonbehalfby")]
+        [RelationshipSchemaName("lk_bookingstatus_modifiedonbehalfby")]
+        public SystemUser lk_bookingstatus_modifiedonbehalfby {
+            get {
+                return GetRelatedEntity<SystemUser>("lk_bookingstatus_modifiedonbehalfby", null);
+            }
+            set {
+                SetRelatedEntity("lk_bookingstatus_modifiedonbehalfby", null, value);
+            }
+        }
+        
+        [AttributeLogicalName("owninguser")]
+        [RelationshipSchemaName("user_bookingstatus")]
+        public SystemUser user_bookingstatus {
+            get {
+                return GetRelatedEntity<SystemUser>("user_bookingstatus", null);
+            }
+            set {
+                SetRelatedEntity("user_bookingstatus", null, value);
+            }
+        }
+        
+        public static BookingStatus Retrieve(IOrganizationService service, Guid id, params Expression<Func<BookingStatus,object>>[] attrs) {
             return service.Retrieve(id, attrs);
         }
     }
@@ -4539,6 +5050,46 @@ namespace Domain {
             }
         }
         
+        [RelationshipSchemaName("lk_bookingstatus_createdby")]
+        public IEnumerable<BookingStatus> lk_bookingstatus_createdby {
+            get {
+                return GetRelatedEntities<BookingStatus>("lk_bookingstatus_createdby", null);
+            }
+            set {
+                SetRelatedEntities("lk_bookingstatus_createdby", null, value);
+            }
+        }
+        
+        [RelationshipSchemaName("lk_bookingstatus_createdonbehalfby")]
+        public IEnumerable<BookingStatus> lk_bookingstatus_createdonbehalfby {
+            get {
+                return GetRelatedEntities<BookingStatus>("lk_bookingstatus_createdonbehalfby", null);
+            }
+            set {
+                SetRelatedEntities("lk_bookingstatus_createdonbehalfby", null, value);
+            }
+        }
+        
+        [RelationshipSchemaName("lk_bookingstatus_modifiedby")]
+        public IEnumerable<BookingStatus> lk_bookingstatus_modifiedby {
+            get {
+                return GetRelatedEntities<BookingStatus>("lk_bookingstatus_modifiedby", null);
+            }
+            set {
+                SetRelatedEntities("lk_bookingstatus_modifiedby", null, value);
+            }
+        }
+        
+        [RelationshipSchemaName("lk_bookingstatus_modifiedonbehalfby")]
+        public IEnumerable<BookingStatus> lk_bookingstatus_modifiedonbehalfby {
+            get {
+                return GetRelatedEntities<BookingStatus>("lk_bookingstatus_modifiedonbehalfby", null);
+            }
+            set {
+                SetRelatedEntities("lk_bookingstatus_modifiedonbehalfby", null, value);
+            }
+        }
+        
         [RelationshipSchemaName("lk_msdyn_workorder_createdby")]
         public IEnumerable<msdyn_workorder> lk_msdyn_workorder_createdby {
             get {
@@ -4616,6 +5167,16 @@ namespace Domain {
             }
             set {
                 SetRelatedEntities("user_bookableresourcebooking", null, value);
+            }
+        }
+        
+        [RelationshipSchemaName("user_bookingstatus")]
+        public IEnumerable<BookingStatus> user_bookingstatus {
+            get {
+                return GetRelatedEntities<BookingStatus>("user_bookingstatus", null);
+            }
+            set {
+                SetRelatedEntities("user_bookingstatus", null, value);
             }
         }
         
@@ -6220,6 +6781,12 @@ namespace Domain {
             }
         }
         
+        public IQueryable<BookingStatus> BookingStatusSet {
+            get {
+                return CreateQuery<BookingStatus>();
+            }
+        }
+        
         public IQueryable<SystemUser> SystemUserSet {
             get {
                 return CreateQuery<SystemUser>();
@@ -6319,6 +6886,46 @@ namespace Domain {
     
     [DataContract()]
     public enum BookableResourceBooking_StatusCode {
+        
+        [EnumMember()]
+        [OptionSetMetadata("Aktiv", Index=0, Lcid=1030)]
+        Aktiv = 1,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Inaktiv", Index=1, Lcid=1030)]
+        Inaktiv = 2,
+    }
+    
+    [DataContract()]
+    public enum BookingStatusState {
+        
+        [EnumMember()]
+        [OptionSetMetadata("Aktiv", Index=0, Lcid=1030)]
+        Aktiv = 0,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Inaktiv", Index=1, Lcid=1030)]
+        Inaktiv = 1,
+    }
+    
+    [DataContract()]
+    public enum BookingStatus_Status {
+        
+        [EnumMember()]
+        [OptionSetMetadata("Foreslået", Index=0, Lcid=1030)]
+        Foreslået = 1,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Bindende", Index=1, Lcid=1030)]
+        Bindende = 2,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Annulleret", Index=2, Lcid=1030)]
+        Annulleret = 3,
+    }
+    
+    [DataContract()]
+    public enum BookingStatus_StatusCode {
         
         [EnumMember()]
         [OptionSetMetadata("Aktiv", Index=0, Lcid=1030)]
@@ -6847,6 +7454,34 @@ namespace Domain {
         [EnumMember()]
         [OptionSetMetadata("Placeringsagnostik", Index=2, Lcid=1030, Description="", Color="#0000ff")]
         Placeringsagnostik = 690970002,
+    }
+    
+    [DataContract()]
+    public enum msdyn_bookingsystemstatus {
+        
+        [EnumMember()]
+        [OptionSetMetadata("Planlagt", Index=0, Lcid=1030, Description="", Color="#0d62aa")]
+        Planlagt = 690970000,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Rejse", Index=1, Lcid=1030, Description="", Color="#b5d47a")]
+        Rejse = 690970001,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Har pause", Index=3, Lcid=1030, Description="", Color="#54acb6")]
+        Harpause = 690970002,
+        
+        [EnumMember()]
+        [OptionSetMetadata("I gang", Index=2, Lcid=1030, Description="", Color="#448715")]
+        Igang = 690970003,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Fuldført", Index=4, Lcid=1030, Description="", Color="#00c7e6")]
+        Fuldført = 690970004,
+        
+        [EnumMember()]
+        [OptionSetMetadata("Annulleret", Index=5, Lcid=1030, Description="", Color="#f2f8e8")]
+        Annulleret = 690970005,
     }
     
     [DataContract()]

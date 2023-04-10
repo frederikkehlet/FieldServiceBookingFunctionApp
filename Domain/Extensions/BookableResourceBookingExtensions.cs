@@ -1,4 +1,6 @@
 ﻿using Domain.Models;
+using Domain.Services;
+using Domain.Services.Implementation;
 using System;
 
 namespace Domain.Extensions
@@ -30,7 +32,25 @@ namespace Domain.Extensions
                         CountryOrRegion = workOrder.msdyn_Country,
                     },
                     DisplayName = workOrder.GetFormattedAddress()
-                }
+                },
+                ShowAs = booking.ToShowAs()
+            };
+        }
+
+        private static string? ToShowAs(this BookableResourceBooking booking)
+        {
+            switch (booking.BookingStatus.Name)
+            {
+                case "Planlagte":
+                    return "busy";
+                case "Rejse":
+                    return "oof";
+                case "I gang":
+                    return "workingElsewhere";
+                case "Fuldført":
+                    return "free";
+                default:
+                    return null;
             };
         }
 
