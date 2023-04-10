@@ -24,9 +24,7 @@ namespace FieldServiceBookingFunction
                     ClientId={Environment.GetEnvironmentVariable("DataverseClientId")};
                     ClientSecret={Environment.GetEnvironmentVariable("DataverseClientSecret")}";
 
-                var serviceClient = new ServiceClient(connectionString);
-
-                return serviceClient;
+                return new ServiceClient(connectionString);
             });
 
             builder.Services.AddScoped(provider => 

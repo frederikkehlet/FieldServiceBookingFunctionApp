@@ -1,8 +1,6 @@
 ﻿using Microsoft.PowerPlatform.Dataverse.Client;
 using System;
 using System.Linq;
-using System.Security.Cryptography;
-using Tavis.UriTemplates;
 
 namespace Domain.Services.Implementation
 {

@@ -5,7 +5,6 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Collections.Generic;
 using System.Text.Json;
-using Microsoft.Extensions.Logging;
 using Domain.Extensions;
 
 namespace Domain.Clients.Implementation
