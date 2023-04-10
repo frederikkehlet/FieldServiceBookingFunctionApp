@@ -33,7 +33,23 @@ namespace Domain.Extensions
                     },
                     DisplayName = workOrder.GetFormattedAddress()
                 },
+                Categories = booking.ToCategory(),
                 ShowAs = booking.ToShowAs()
+            };
+        }
+
+        private static string[] ToCategory(this BookableResourceBooking booking)
+        {
+            switch (booking.BookingStatus.Name)
+            {
+                case "Planlagte":
+                    return new string[] { "Blå kategori" };
+                case "Rejse":
+                    return new string[] { "Rød kategori" };
+                case "I gang":
+                    return new string[] { "Grøn kategori" };
+                default:
+                    return new string[] { };
             };
         }
 
@@ -41,14 +57,8 @@ namespace Domain.Extensions
         {
             switch (booking.BookingStatus.Name)
             {
-                case "Planlagte":
-                    return "busy";
-                case "Rejse":
-                    return "oof";
-                case "I gang":
-                    return "workingElsewhere";
                 case "Fuldført":
-                    return "free";
+                    return "free" ;
                 default:
                     return null;
             };

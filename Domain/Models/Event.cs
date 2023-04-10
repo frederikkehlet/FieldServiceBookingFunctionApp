@@ -19,6 +19,9 @@ namespace Domain.Models
         [JsonPropertyName("location")]
         public Location Location { get; set; }
 
+        [JsonPropertyName("categories")]
+        public string[] Categories { get; set; }
+
         [JsonPropertyName("showAs")]
         public string ShowAs { get; set; }
     }
