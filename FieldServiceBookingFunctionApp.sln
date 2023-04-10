@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33424.131
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FieldServiceBookingFunction", "FieldServiceBookingFunction\FieldServiceBookingFunction.csproj", "{8593FFEC-42A9-40F2-B230-8DD303938C85}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{01BD949A-94BD-4482-B292-0433B32F889B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8593FFEC-42A9-40F2-B230-8DD303938C85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8593FFEC-42A9-40F2-B230-8DD303938C85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8593FFEC-42A9-40F2-B230-8DD303938C85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8593FFEC-42A9-40F2-B230-8DD303938C85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01BD949A-94BD-4482-B292-0433B32F889B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01BD949A-94BD-4482-B292-0433B32F889B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01BD949A-94BD-4482-B292-0433B32F889B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01BD949A-94BD-4482-B292-0433B32F889B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7F017677-C01F-4C77-BBC4-90D344937B10}
+	EndGlobalSection
+EndGlobal
