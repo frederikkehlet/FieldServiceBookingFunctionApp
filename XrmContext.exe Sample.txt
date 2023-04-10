@@ -1,0 +1,1 @@
+XrmContext.exe /out:<OutputDirectory> /entities:<EntityList> /url:<OrganizationUrl>.api.crm4.dynamics.com/XRMServices/2011/Organization.svc /username:<UserName> /password:<Password> /method:"ClientSecret" /mfaClientSecret:<ClientSecret> /mfaAppId:<ClientId> /namespace:<Namespace> /servicecontextname:<ServiceContextName>
